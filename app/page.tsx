@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Bell, Plus, Droplet, Utensils, Clock, Trash2, RefreshCw, BarChart3, Settings, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Bell, Plus, Droplet, Utensils, Trash2, RefreshCw, BarChart3, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 // TypeScript interfaces
@@ -53,6 +53,48 @@ interface WaterLog {
   id: string;
   created_at: string;
   amount_ml: number;
+}
+
+interface FoodFormData {
+  foodName: string;
+  calories: string;
+  protein: string;
+  carbs: string;
+  fat: string;
+  mealTime: string;
+  fiber: string;
+  sugar: string;
+  sodium: string;
+  salt: string;
+  omega_3: string;
+  omega_6: string;
+  vitamin_a: string;
+  vitamin_b1: string;
+  vitamin_b2: string;
+  vitamin_b3: string;
+  vitamin_b5: string;
+  vitamin_b6: string;
+  vitamin_b12: string;
+  folate: string;
+  biotin: string;
+  choline: string;
+  vitamin_c: string;
+  vitamin_d: string;
+  vitamin_e: string;
+  vitamin_k: string;
+  calcium: string;
+  phosphorus: string;
+  magnesium: string;
+  iron: string;
+  iodine: string;
+  zinc: string;
+  selenium: string;
+  manganese: string;
+  fluoride: string;
+  chromium: string;
+  potassium: string;
+  chloride: string;
+  copper: string;
 }
 
 // Target nutrisi harian
@@ -107,7 +149,7 @@ const FoodTrackerApp = () => {
   const [reminderEnabled, setReminderEnabled] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const [foodForm, setFoodForm] = useState<any>({
+  const [foodForm, setFoodForm] = useState<FoodFormData>({
     foodName: '',
     calories: '',
     protein: '',
@@ -198,7 +240,7 @@ const FoodTrackerApp = () => {
     }
 
     try {
-      const insertData: any = {
+      const insertData: Partial<FoodLog> = {
         food_name: foodForm.foodName,
         calories: parseFloat(foodForm.calories) || null,
         protein: parseFloat(foodForm.protein) || null,
@@ -215,10 +257,11 @@ const FoodTrackerApp = () => {
           'vitamin_c', 'vitamin_d', 'vitamin_e', 'vitamin_k',
           'calcium', 'phosphorus', 'magnesium', 'iron', 'iodine',
           'zinc', 'selenium', 'manganese', 'fluoride', 'chromium',
-          'potassium', 'chloride', 'copper'];
+          'potassium', 'chloride', 'copper'] as const;
         
         micronutrients.forEach(nutrient => {
-          insertData[nutrient] = parseFloat(foodForm[nutrient]) || null;
+          const value = foodForm[nutrient as keyof FoodFormData];
+          (insertData as Record<string, number | null | string>)[nutrient] = parseFloat(value as string) || null;
         });
       }
 
@@ -232,17 +275,16 @@ const FoodTrackerApp = () => {
       await loadTodayData();
       
       // Reset form
-      const resetForm: any = {
+      const resetForm: FoodFormData = {
         foodName: '', calories: '', protein: '', carbs: '', fat: '', mealTime: 'breakfast',
+        fiber: '', sugar: '', sodium: '', salt: '', omega_3: '', omega_6: '',
+        vitamin_a: '', vitamin_b1: '', vitamin_b2: '', vitamin_b3: '', vitamin_b5: '',
+        vitamin_b6: '', vitamin_b12: '', folate: '', biotin: '', choline: '',
+        vitamin_c: '', vitamin_d: '', vitamin_e: '', vitamin_k: '',
+        calcium: '', phosphorus: '', magnesium: '', iron: '', iodine: '',
+        zinc: '', selenium: '', manganese: '', fluoride: '', chromium: '',
+        potassium: '', chloride: '', copper: '',
       };
-      const micronutrients = ['fiber', 'sugar', 'sodium', 'salt', 'omega_3', 'omega_6',
-        'vitamin_a', 'vitamin_b1', 'vitamin_b2', 'vitamin_b3', 'vitamin_b5',
-        'vitamin_b6', 'vitamin_b12', 'folate', 'biotin', 'choline',
-        'vitamin_c', 'vitamin_d', 'vitamin_e', 'vitamin_k',
-        'calcium', 'phosphorus', 'magnesium', 'iron', 'iodine',
-        'zinc', 'selenium', 'manganese', 'fluoride', 'chromium',
-        'potassium', 'chloride', 'copper'];
-      micronutrients.forEach(n => resetForm[n] = '');
       setFoodForm(resetForm);
       setShowFoodForm(false);
       
