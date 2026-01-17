@@ -261,80 +261,80 @@ const FoodTrackerApp = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-          <div className="flex items-center justify-between">
+        <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">
-                <Utensils className="text-green-600" />
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 md:gap-3">
+                <Utensils className="text-green-600" size={28} />
                 Food Tracker
               </h1>
-              <p className="text-gray-600 mt-1">Track makanan & minummu setiap hari</p>
+              <p className="text-sm md:text-base text-gray-600 mt-1">Track makanan & minummu</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full sm:w-auto">
               <button
                 onClick={loadTodayData}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+                className="flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition flex-1 sm:flex-initial"
               >
-                <RefreshCw size={20} />
-                Refresh
+                <RefreshCw size={18} />
+                <span className="text-sm md:text-base">Refresh</span>
               </button>
               <button
                 onClick={reminderEnabled ? () => setReminderEnabled(false) : enableReminder}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
+                className={`flex items-center justify-center gap-2 px-3 md:px-4 py-2 rounded-lg transition flex-1 sm:flex-initial ${
                   reminderEnabled
                     ? 'bg-green-600 text-white hover:bg-green-700'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
-                <Bell size={20} />
-                {reminderEnabled ? 'Reminder ON' : 'Aktifkan Reminder'}
+                <Bell size={18} />
+                <span className="text-sm md:text-base">{reminderEnabled ? 'ON' : 'OFF'}</span>
               </button>
             </div>
           </div>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow p-4 border-l-4 border-orange-500">
-            <div className="text-sm text-gray-600">Kalori Hari Ini</div>
-            <div className="text-2xl font-bold text-orange-600">{todayCalories.toFixed(0)}</div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mb-6">
+          <div className="bg-white rounded-xl shadow p-3 md:p-4 border-l-4 border-orange-500">
+            <div className="text-xs md:text-sm text-gray-600 truncate">Kalori</div>
+            <div className="text-xl md:text-2xl font-bold text-orange-600">{todayCalories.toFixed(0)}</div>
             <div className="text-xs text-gray-500">kcal</div>
           </div>
-          <div className="bg-white rounded-xl shadow p-4 border-l-4 border-red-500">
-            <div className="text-sm text-gray-600">Protein</div>
-            <div className="text-2xl font-bold text-red-600">{todayProtein.toFixed(1)}</div>
+          <div className="bg-white rounded-xl shadow p-3 md:p-4 border-l-4 border-red-500">
+            <div className="text-xs md:text-sm text-gray-600 truncate">Protein</div>
+            <div className="text-xl md:text-2xl font-bold text-red-600">{todayProtein.toFixed(1)}</div>
             <div className="text-xs text-gray-500">gram</div>
           </div>
-          <div className="bg-white rounded-xl shadow p-4 border-l-4 border-yellow-500">
-            <div className="text-sm text-gray-600">Karbohidrat</div>
-            <div className="text-2xl font-bold text-yellow-600">{todayCarbs.toFixed(1)}</div>
+          <div className="bg-white rounded-xl shadow p-3 md:p-4 border-l-4 border-yellow-500">
+            <div className="text-xs md:text-sm text-gray-600 truncate">Karbo</div>
+            <div className="text-xl md:text-2xl font-bold text-yellow-600">{todayCarbs.toFixed(1)}</div>
             <div className="text-xs text-gray-500">gram</div>
           </div>
-          <div className="bg-white rounded-xl shadow p-4 border-l-4 border-purple-500">
-            <div className="text-sm text-gray-600">Lemak</div>
-            <div className="text-2xl font-bold text-purple-600">{todayFat.toFixed(1)}</div>
+          <div className="bg-white rounded-xl shadow p-3 md:p-4 border-l-4 border-purple-500">
+            <div className="text-xs md:text-sm text-gray-600 truncate">Lemak</div>
+            <div className="text-xl md:text-2xl font-bold text-purple-600">{todayFat.toFixed(1)}</div>
             <div className="text-xs text-gray-500">gram</div>
           </div>
-          <div className="bg-white rounded-xl shadow p-4 border-l-4 border-blue-500">
-            <div className="text-sm text-gray-600">Air Hari Ini</div>
-            <div className="text-2xl font-bold text-blue-600">{(todayWater / 1000).toFixed(1)}</div>
+          <div className="bg-white rounded-xl shadow p-3 md:p-4 border-l-4 border-blue-500 col-span-2 md:col-span-1">
+            <div className="text-xs md:text-sm text-gray-600 truncate">Air Hari Ini</div>
+            <div className="text-xl md:text-2xl font-bold text-blue-600">{(todayWater / 1000).toFixed(1)}</div>
             <div className="text-xs text-gray-500">liter</div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Food Section */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-                <Utensils className="text-green-600" />
+              <h2 className="text-lg md:text-xl font-bold text-gray-800 flex items-center gap-2">
+                <Utensils className="text-green-600" size={20} />
                 Makanan
               </h2>
               <button
                 onClick={() => setShowFoodForm(!showFoodForm)}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2"
+                className="bg-green-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2 text-sm md:text-base"
               >
-                <Plus size={20} />
+                <Plus size={18} />
                 Tambah
               </button>
             </div>
@@ -409,30 +409,30 @@ const FoodTrackerApp = () => {
                 </div>
               ) : (
                 foodLogs.map((log) => (
-                  <div key={log.id} className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
+                  <div key={log.id} className="bg-gray-50 rounded-lg p-3 md:p-4 hover:bg-gray-100 transition">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xl">{getMealEmoji(log.meal_time)}</span>
-                          <h3 className="font-semibold text-gray-800">{log.food_name}</h3>
+                          <span className="text-lg md:text-xl flex-shrink-0">{getMealEmoji(log.meal_time)}</span>
+                          <h3 className="font-semibold text-gray-800 text-sm md:text-base truncate">{log.food_name}</h3>
                         </div>
-                        <div className="flex gap-4 text-sm text-gray-600 flex-wrap">
-                          {log.calories && <span>🔥 {log.calories} kcal</span>}
-                          {log.protein && <span>🥩 {log.protein}g protein</span>}
-                          {log.carbs && <span>🍚 {log.carbs}g karbo</span>}
-                          {log.fat && <span>🧈 {log.fat}g lemak</span>}
+                        <div className="flex gap-2 md:gap-4 text-xs md:text-sm text-gray-600 flex-wrap">
+                          {log.calories && <span className="whitespace-nowrap">🔥 {log.calories} kcal</span>}
+                          {log.protein && <span className="whitespace-nowrap">🥩 {log.protein}g</span>}
+                          {log.carbs && <span className="whitespace-nowrap">🍚 {log.carbs}g</span>}
+                          {log.fat && <span className="whitespace-nowrap">🧈 {log.fat}g</span>}
                         </div>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
+                      <div className="flex flex-col items-end gap-2 flex-shrink-0">
                         <div className="text-xs text-gray-400 flex items-center gap-1">
-                          <Clock size={12} />
+                          <Clock size={10} />
                           {formatTime(log.created_at)}
                         </div>
                         <button
                           onClick={() => deleteFoodLog(log.id)}
                           className="text-red-500 hover:text-red-700 p-1"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={14} />
                         </button>
                       </div>
                     </div>
@@ -443,10 +443,10 @@ const FoodTrackerApp = () => {
           </div>
 
           {/* Water Section */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-                <Droplet className="text-blue-600" />
+              <h2 className="text-lg md:text-xl font-bold text-gray-800 flex items-center gap-2">
+                <Droplet className="text-blue-600" size={20} />
                 Air Putih
               </h2>
             </div>
@@ -496,20 +496,20 @@ const FoodTrackerApp = () => {
               ) : (
                 waterLogs.map((log) => (
                   <div key={log.id} className="bg-gray-50 rounded-lg p-3 flex items-center justify-between hover:bg-gray-100 transition">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-blue-100 p-2 rounded-lg">
-                        <Droplet className="text-blue-600" size={20} />
+                    <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
+                      <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                        <Droplet className="text-blue-600" size={18} />
                       </div>
-                      <div>
-                        <div className="font-semibold text-gray-800">{log.amount_ml}ml</div>
+                      <div className="min-w-0">
+                        <div className="font-semibold text-gray-800 text-sm md:text-base">{log.amount_ml}ml</div>
                         <div className="text-xs text-gray-500">{formatTime(log.created_at)}</div>
                       </div>
                     </div>
                     <button
                       onClick={() => deleteWaterLog(log.id)}
-                      className="text-red-500 hover:text-red-700 p-1"
+                      className="text-red-500 hover:text-red-700 p-1 flex-shrink-0"
                     >
-                      <Trash2 size={16} />
+                      <Trash2 size={14} />
                     </button>
                   </div>
                 ))
