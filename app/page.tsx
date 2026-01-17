@@ -621,41 +621,41 @@ const FoodTrackerApp = () => {
                 </div>
 
                 {detailedMode && (
-                  <div className="border-t pt-4 mt-4">
-                    <h4 className="font-semibold mb-3">Mikronutrien (Opsional)</h4>
+                  <div className="border-t-2 border-green-200 pt-4 mt-4">
+                    <h4 className="font-semibold mb-3 text-gray-800 text-lg">Mikronutrien (Opsional)</h4>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                      <input type="number" placeholder="Serat (g)" value={foodForm.fiber} onChange={(e) => setFoodForm({ ...foodForm, fiber: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Gula (g)" value={foodForm.sugar} onChange={(e) => setFoodForm({ ...foodForm, sugar: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Garam (g)" value={foodForm.salt} onChange={(e) => setFoodForm({ ...foodForm, salt: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Omega-3 (g)" value={foodForm.omega_3} onChange={(e) => setFoodForm({ ...foodForm, omega_3: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Omega-6 (g)" value={foodForm.omega_6} onChange={(e) => setFoodForm({ ...foodForm, omega_6: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit A (mcg)" value={foodForm.vitamin_a} onChange={(e) => setFoodForm({ ...foodForm, vitamin_a: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B1 (mg)" value={foodForm.vitamin_b1} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b1: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B2 (mg)" value={foodForm.vitamin_b2} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b2: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B3 (mg)" value={foodForm.vitamin_b3} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b3: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B5 (mg)" value={foodForm.vitamin_b5} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b5: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B6 (mg)" value={foodForm.vitamin_b6} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b6: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit B12 (mcg)" value={foodForm.vitamin_b12} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b12: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Folat (mcg)" value={foodForm.folate} onChange={(e) => setFoodForm({ ...foodForm, folate: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Biotin (mcg)" value={foodForm.biotin} onChange={(e) => setFoodForm({ ...foodForm, biotin: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Kolin (mg)" value={foodForm.choline} onChange={(e) => setFoodForm({ ...foodForm, choline: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit C (mg)" value={foodForm.vitamin_c} onChange={(e) => setFoodForm({ ...foodForm, vitamin_c: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit D (mcg)" value={foodForm.vitamin_d} onChange={(e) => setFoodForm({ ...foodForm, vitamin_d: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit E (mg)" value={foodForm.vitamin_e} onChange={(e) => setFoodForm({ ...foodForm, vitamin_e: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Vit K (mcg)" value={foodForm.vitamin_k} onChange={(e) => setFoodForm({ ...foodForm, vitamin_k: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Kalsium (mg)" value={foodForm.calcium} onChange={(e) => setFoodForm({ ...foodForm, calcium: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Fosfor (mg)" value={foodForm.phosphorus} onChange={(e) => setFoodForm({ ...foodForm, phosphorus: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Magnesium (mg)" value={foodForm.magnesium} onChange={(e) => setFoodForm({ ...foodForm, magnesium: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Besi (mg)" value={foodForm.iron} onChange={(e) => setFoodForm({ ...foodForm, iron: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Iodium (mcg)" value={foodForm.iodine} onChange={(e) => setFoodForm({ ...foodForm, iodine: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Seng (mg)" value={foodForm.zinc} onChange={(e) => setFoodForm({ ...foodForm, zinc: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Selenium (mcg)" value={foodForm.selenium} onChange={(e) => setFoodForm({ ...foodForm, selenium: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Mangan (mg)" value={foodForm.manganese} onChange={(e) => setFoodForm({ ...foodForm, manganese: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Fluor (mg)" value={foodForm.fluoride} onChange={(e) => setFoodForm({ ...foodForm, fluoride: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Kromium (mcg)" value={foodForm.chromium} onChange={(e) => setFoodForm({ ...foodForm, chromium: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Kalium (mg)" value={foodForm.potassium} onChange={(e) => setFoodForm({ ...foodForm, potassium: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Klor (mg)" value={foodForm.chloride} onChange={(e) => setFoodForm({ ...foodForm, chloride: e.target.value })} className="p-2 border rounded-lg text-sm" />
-                      <input type="number" placeholder="Tembaga (mg)" value={foodForm.copper} onChange={(e) => setFoodForm({ ...foodForm, copper: e.target.value })} className="p-2 border rounded-lg text-sm" />
+                      <input type="number" placeholder="Serat (g)" value={foodForm.fiber} onChange={(e) => setFoodForm({ ...foodForm, fiber: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Gula (g)" value={foodForm.sugar} onChange={(e) => setFoodForm({ ...foodForm, sugar: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Garam (g)" value={foodForm.salt} onChange={(e) => setFoodForm({ ...foodForm, salt: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Omega-3 (g)" value={foodForm.omega_3} onChange={(e) => setFoodForm({ ...foodForm, omega_3: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Omega-6 (g)" value={foodForm.omega_6} onChange={(e) => setFoodForm({ ...foodForm, omega_6: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit A (mcg)" value={foodForm.vitamin_a} onChange={(e) => setFoodForm({ ...foodForm, vitamin_a: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B1 (mg)" value={foodForm.vitamin_b1} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b1: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B2 (mg)" value={foodForm.vitamin_b2} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b2: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B3 (mg)" value={foodForm.vitamin_b3} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b3: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B5 (mg)" value={foodForm.vitamin_b5} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b5: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B6 (mg)" value={foodForm.vitamin_b6} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b6: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit B12 (mcg)" value={foodForm.vitamin_b12} onChange={(e) => setFoodForm({ ...foodForm, vitamin_b12: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Folat (mcg)" value={foodForm.folate} onChange={(e) => setFoodForm({ ...foodForm, folate: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Biotin (mcg)" value={foodForm.biotin} onChange={(e) => setFoodForm({ ...foodForm, biotin: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Kolin (mg)" value={foodForm.choline} onChange={(e) => setFoodForm({ ...foodForm, choline: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit C (mg)" value={foodForm.vitamin_c} onChange={(e) => setFoodForm({ ...foodForm, vitamin_c: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit D (mcg)" value={foodForm.vitamin_d} onChange={(e) => setFoodForm({ ...foodForm, vitamin_d: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit E (mg)" value={foodForm.vitamin_e} onChange={(e) => setFoodForm({ ...foodForm, vitamin_e: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Vit K (mcg)" value={foodForm.vitamin_k} onChange={(e) => setFoodForm({ ...foodForm, vitamin_k: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Kalsium (mg)" value={foodForm.calcium} onChange={(e) => setFoodForm({ ...foodForm, calcium: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Fosfor (mg)" value={foodForm.phosphorus} onChange={(e) => setFoodForm({ ...foodForm, phosphorus: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Magnesium (mg)" value={foodForm.magnesium} onChange={(e) => setFoodForm({ ...foodForm, magnesium: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Besi (mg)" value={foodForm.iron} onChange={(e) => setFoodForm({ ...foodForm, iron: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Iodium (mcg)" value={foodForm.iodine} onChange={(e) => setFoodForm({ ...foodForm, iodine: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Seng (mg)" value={foodForm.zinc} onChange={(e) => setFoodForm({ ...foodForm, zinc: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Selenium (mcg)" value={foodForm.selenium} onChange={(e) => setFoodForm({ ...foodForm, selenium: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Mangan (mg)" value={foodForm.manganese} onChange={(e) => setFoodForm({ ...foodForm, manganese: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Fluor (mg)" value={foodForm.fluoride} onChange={(e) => setFoodForm({ ...foodForm, fluoride: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Kromium (mcg)" value={foodForm.chromium} onChange={(e) => setFoodForm({ ...foodForm, chromium: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Kalium (mg)" value={foodForm.potassium} onChange={(e) => setFoodForm({ ...foodForm, potassium: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Klor (mg)" value={foodForm.chloride} onChange={(e) => setFoodForm({ ...foodForm, chloride: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
+                      <input type="number" placeholder="Tembaga (mg)" value={foodForm.copper} onChange={(e) => setFoodForm({ ...foodForm, copper: e.target.value })} className="p-2 border-2 border-green-200 rounded-lg text-sm font-medium focus:border-green-400 transition-all" />
                     </div>
                   </div>
                 )}
@@ -721,47 +721,50 @@ const FoodTrackerApp = () => {
         {/* Water Page */}
         {currentPage === 'water' && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Tracking Air Putih</h2>
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">Tracking Air Putih</h2>
+              <p className="text-gray-600">Jaga hidrasi tubuhmu setiap hari</p>
+            </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl shadow-xl p-6 mb-6">
               <div className="mb-6">
                 <ProgressBar label="Air Hari Ini" current={totals.water} target={DAILY_TARGETS.water} unit="ml" />
               </div>
 
-              <div className="bg-blue-50 rounded-xl p-4">
-                <p className="text-sm text-gray-600 mb-3">Quick Add:</p>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-2 border-blue-200">
+                <p className="text-sm font-semibold text-gray-700 mb-3">Quick Add:</p>
                 <div className="grid grid-cols-3 gap-3">
-                  <button onClick={() => addWaterLog(250)} className="bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                  <button onClick={() => addWaterLog(250)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
                     250ml
                   </button>
-                  <button onClick={() => addWaterLog(500)} className="bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                  <button onClick={() => addWaterLog(500)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
                     500ml
                   </button>
-                  <button onClick={() => addWaterLog(1000)} className="bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                  <button onClick={() => addWaterLog(1000)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
                     1L
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Riwayat Minum Hari Ini</h3>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-2 border-blue-100">
+              <h3 className="text-lg font-bold mb-4 text-gray-800">Riwayat Minum Hari Ini</h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {waterLogs.length === 0 ? (
-                  <p className="text-center py-8 text-gray-400">Belum minum air hari ini</p>
+                  <p className="text-center py-8 text-gray-500">Belum minum air hari ini</p>
                 ) : (
                   waterLogs.map((log) => (
-                    <div key={log.id} className="bg-gray-50 rounded-lg p-3 flex items-center justify-between hover:bg-gray-100 transition">
+                    <div key={log.id} className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-3 flex items-center justify-between hover:shadow-md transition-all border border-blue-200">
                       <div className="flex items-center gap-3">
-                        <div className="bg-blue-100 p-2 rounded-lg">
+                        <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-2 rounded-lg">
                           <Droplet className="text-blue-600" size={20} />
                         </div>
                         <div>
                           <div className="font-semibold text-gray-800">{log.amount_ml}ml</div>
-                          <div className="text-xs text-gray-500">{formatTime(log.created_at)}</div>
+                          <div className="text-xs text-gray-600 font-medium">{formatTime(log.created_at)}</div>
                         </div>
                       </div>
-                      <button onClick={() => deleteWaterLog(log.id)} className="text-red-500 hover:text-red-700">
+                      <button onClick={() => deleteWaterLog(log.id)} className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all">
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -775,10 +778,13 @@ const FoodTrackerApp = () => {
         {/* Nutrients Detail Page */}
         {currentPage === 'nutrients' && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Detail Nutrisi Lengkap</h2>
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Detail Nutrisi Lengkap</h2>
+              <p className="text-gray-600">Tracking vitamin dan mineral harianmu</p>
+            </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-              <h3 className="text-lg font-bold mb-4">Vitamin</h3>
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl shadow-xl p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">💊 Vitamin</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Vitamin A" current={totals.vitamin_a} target={DAILY_TARGETS.vitamin_a} unit="mcg" />
                 <ProgressBar label="Vitamin B1 (Thiamin)" current={totals.vitamin_b1} target={DAILY_TARGETS.vitamin_b1} unit="mg" />
@@ -797,8 +803,8 @@ const FoodTrackerApp = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-              <h3 className="text-lg font-bold mb-4">Mineral</h3>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl shadow-xl p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">⚡ Mineral</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Kalsium" current={totals.calcium} target={DAILY_TARGETS.calcium} unit="mg" />
                 <ProgressBar label="Fosfor" current={totals.phosphorus} target={DAILY_TARGETS.phosphorus} unit="mg" />
@@ -817,8 +823,8 @@ const FoodTrackerApp = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Nutrisi Lainnya</h3>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl shadow-xl p-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">🌿 Nutrisi Lainnya</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Serat" current={totals.fiber} target={DAILY_TARGETS.fiber} unit="g" />
                 <ProgressBar label="Gula" current={totals.sugar} target={DAILY_TARGETS.sugar} unit="g" />
