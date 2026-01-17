@@ -47,6 +47,10 @@ const FoodTrackerApp = () => {
     mealTime: 'breakfast'
   });
 
+  useEffect(() => {
+    document.title = 'Food Tracker - Track Makanan & Minuman';
+  }, []);
+
   // Load data saat pertama kali
   useEffect(() => {
     loadTodayData();
