@@ -443,98 +443,108 @@ const FoodTrackerApp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 flex">
       {/* Sidebar */}
-      <div className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-        <div className="p-6 border-b">
+      <div className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-white to-green-50 shadow-2xl transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        <div className="p-6 border-b border-green-100 bg-gradient-to-r from-green-500 to-emerald-600">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-              <Utensils className="text-green-600" size={24} />
+            <h1 className="text-xl font-bold text-white flex items-center gap-2">
+              <Utensils className="text-white" size={24} />
               Food Tracker
             </h1>
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
+            <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white hover:bg-white/20 rounded-lg p-1">
               <X size={24} />
             </button>
           </div>
         </div>
         
-        <nav className="p-4">
+        <nav className="p-4 space-y-2">
           <button
             onClick={() => { setCurrentPage('dashboard'); setSidebarOpen(false); }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition ${currentPage === 'dashboard' ? 'bg-green-100 text-green-700' : 'hover:bg-gray-100'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${currentPage === 'dashboard' ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/50 font-semibold' : 'hover:bg-green-50 text-gray-700 hover:text-green-700'}`}
           >
             <BarChart3 size={20} />
-            Dashboard
+            <span>Dashboard</span>
           </button>
           <button
             onClick={() => { setCurrentPage('food'); setSidebarOpen(false); }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition ${currentPage === 'food' ? 'bg-green-100 text-green-700' : 'hover:bg-gray-100'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${currentPage === 'food' ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/50 font-semibold' : 'hover:bg-green-50 text-gray-700 hover:text-green-700'}`}
           >
             <Utensils size={20} />
-            Makanan
+            <span>Makanan</span>
           </button>
           <button
             onClick={() => { setCurrentPage('water'); setSidebarOpen(false); }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition ${currentPage === 'water' ? 'bg-green-100 text-green-700' : 'hover:bg-gray-100'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${currentPage === 'water' ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/50 font-semibold' : 'hover:bg-green-50 text-gray-700 hover:text-green-700'}`}
           >
             <Droplet size={20} />
-            Air Putih
+            <span>Air Putih</span>
           </button>
           <button
             onClick={() => { setCurrentPage('nutrients'); setSidebarOpen(false); }}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition ${currentPage === 'nutrients' ? 'bg-green-100 text-green-700' : 'hover:bg-gray-100'}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${currentPage === 'nutrients' ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/50 font-semibold' : 'hover:bg-green-50 text-gray-700 hover:text-green-700'}`}
           >
             <BarChart3 size={20} />
-            Detail Nutrisi
+            <span>Detail Nutrisi</span>
           </button>
         </nav>
 
-        <div className="absolute bottom-0 w-full p-4 border-t">
+        <div className="absolute bottom-0 w-full p-4 border-t border-green-100 space-y-2 bg-white">
           <button
             onClick={reminderEnabled ? () => setReminderEnabled(false) : enableReminder}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition ${reminderEnabled ? 'bg-green-600 text-white' : 'bg-gray-200'}`}
+            className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all font-semibold shadow-lg ${reminderEnabled ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/50' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
           >
             <Bell size={18} />
-            {reminderEnabled ? 'Reminder ON' : 'Reminder OFF'}
+            <span>{reminderEnabled ? 'Reminder ON' : 'Reminder OFF'}</span>
+          </button>
+          <button
+            onClick={loadTodayData}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-cyan-50 text-blue-700 rounded-xl hover:from-blue-100 hover:to-cyan-100 transition-all border border-blue-200"
+          >
+            <RefreshCw size={18} />
+            <span>Refresh Data</span>
           </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-4 lg:p-8">
+      <div className="flex-1 p-4 lg:p-8 overflow-y-auto">
         {/* Mobile Header */}
-        <div className="lg:hidden flex items-center justify-between mb-4">
-          <button onClick={() => setSidebarOpen(true)} className="p-2">
+        <div className="lg:hidden flex items-center justify-between mb-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl shadow-xl p-4">
+          <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/20 rounded-lg text-white">
             <Menu size={24} />
           </button>
-          <button onClick={loadTodayData} className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg shadow">
-            <RefreshCw size={18} />
-            Refresh
+          <h2 className="font-bold text-lg text-white">Food Tracker</h2>
+          <button onClick={loadTodayData} className="p-2 hover:bg-white/20 rounded-lg text-white">
+            <RefreshCw size={20} />
           </button>
         </div>
 
         {/* Dashboard Page */}
         {currentPage === 'dashboard' && (
           <div>
-            <h2 className="text-2xl font-bold mb-6">Dashboard Hari Ini</h2>
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">Dashboard Hari Ini</h2>
+              <p className="text-gray-600">Tracking nutrisi harianmu</p>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all">
                 <ProgressBar label="Kalori" current={totals.calories} target={DAILY_TARGETS.calories} unit="kcal" />
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-200 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all">
                 <ProgressBar label="Protein" current={totals.protein} target={DAILY_TARGETS.protein} unit="g" />
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-yellow-200 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all">
                 <ProgressBar label="Karbohidrat" current={totals.carbs} target={DAILY_TARGETS.carbs} unit="g" />
               </div>
-              <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all">
                 <ProgressBar label="Lemak" current={totals.fat} target={DAILY_TARGETS.fat} unit="g" />
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-              <h3 className="text-lg font-bold mb-4">Nutrisi Tambahan</h3>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-6 border-2 border-green-100">
+              <h3 className="text-lg font-bold mb-4 text-gray-800">Nutrisi Tambahan</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Serat" current={totals.fiber} target={DAILY_TARGETS.fiber} unit="g" />
                 <ProgressBar label="Gula" current={totals.sugar} target={DAILY_TARGETS.sugar} unit="g" />
@@ -544,19 +554,19 @@ const FoodTrackerApp = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold mb-4">Makanan Hari Ini ({foodLogs.length})</h3>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-2 border-green-100">
+              <h3 className="text-lg font-bold mb-4 text-gray-800">Makanan Hari Ini ({foodLogs.length})</h3>
               <div className="space-y-2 max-h-96 overflow-y-auto">
                 {foodLogs.length === 0 ? (
                   <p className="text-gray-400 text-center py-8">Belum ada data makanan</p>
                 ) : (
                   foodLogs.slice(0, 5).map(log => (
-                    <div key={log.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={log.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-all">
                       <div className="flex items-center gap-2">
                         <span>{getMealEmoji(log.meal_time)}</span>
-                        <span className="font-medium">{log.food_name}</span>
+                        <span className="font-medium text-gray-800">{log.food_name}</span>
                       </div>
-                      <span className="text-sm text-gray-600">{log.calories} kcal</span>
+                      <span className="text-sm font-semibold text-green-700">{log.calories} kcal</span>
                     </div>
                   ))
                 )}
@@ -569,10 +579,13 @@ const FoodTrackerApp = () => {
         {currentPage === 'food' && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">Input Makanan</h2>
+              <div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">Input Makanan</h2>
+                <p className="text-gray-600">Catat makananmu hari ini</p>
+              </div>
               <button
                 onClick={() => setShowFoodForm(!showFoodForm)}
-                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-green-500/50 transition-all flex items-center gap-2 font-semibold"
               >
                 <Plus size={20} />
                 Tambah Makanan
@@ -580,12 +593,12 @@ const FoodTrackerApp = () => {
             </div>
 
             {showFoodForm && (
-              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl shadow-xl p-6 mb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold">Form Input Makanan</h3>
+                  <h3 className="font-bold text-lg text-gray-800">Form Input Makanan</h3>
                   <button
                     onClick={() => setDetailedMode(!detailedMode)}
-                    className="text-sm text-blue-600 hover:underline flex items-center gap-1"
+                    className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 hover:underline"
                   >
                     {detailedMode ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     {detailedMode ? 'Mode Simple' : 'Mode Detail (Semua Nutrisi)'}
@@ -597,14 +610,14 @@ const FoodTrackerApp = () => {
                   placeholder="Nama makanan"
                   value={foodForm.foodName}
                   onChange={(e) => setFoodForm({ ...foodForm, foodName: e.target.value })}
-                  className="w-full p-3 border-2 border-gray-300 rounded-lg mb-3 bg-white text-gray-800"
+                  className="w-full p-3 border-2 border-green-300 rounded-xl mb-3 bg-white text-gray-800 font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
                 />
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                  <input type="number" placeholder="Kalori (kcal)" value={foodForm.calories} onChange={(e) => setFoodForm({ ...foodForm, calories: e.target.value })} className="p-3 border-2 rounded-lg" />
-                  <input type="number" placeholder="Protein (g)" value={foodForm.protein} onChange={(e) => setFoodForm({ ...foodForm, protein: e.target.value })} className="p-3 border-2 rounded-lg" />
-                  <input type="number" placeholder="Karbo (g)" value={foodForm.carbs} onChange={(e) => setFoodForm({ ...foodForm, carbs: e.target.value })} className="p-3 border-2 rounded-lg" />
-                  <input type="number" placeholder="Lemak (g)" value={foodForm.fat} onChange={(e) => setFoodForm({ ...foodForm, fat: e.target.value })} className="p-3 border-2 rounded-lg" />
+                  <input type="number" placeholder="Kalori (kcal)" value={foodForm.calories} onChange={(e) => setFoodForm({ ...foodForm, calories: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Protein (g)" value={foodForm.protein} onChange={(e) => setFoodForm({ ...foodForm, protein: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Karbo (g)" value={foodForm.carbs} onChange={(e) => setFoodForm({ ...foodForm, carbs: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Lemak (g)" value={foodForm.fat} onChange={(e) => setFoodForm({ ...foodForm, fat: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
                 </div>
 
                 {detailedMode && (
@@ -821,7 +834,7 @@ const FoodTrackerApp = () => {
       {/* Overlay untuk mobile sidebar */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
