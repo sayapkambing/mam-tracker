@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Bell, Plus, Droplet, Utensils, Trash2, RefreshCw, BarChart3, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Bell, Plus, Droplet, Utensils, Trash2, RefreshCw, BarChart3, Menu, X, ChevronDown, ChevronUp, Copy } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 // TypeScript interfaces
@@ -148,6 +148,7 @@ const FoodTrackerApp = () => {
   const [detailedMode, setDetailedMode] = useState(false);
   const [reminderEnabled, setReminderEnabled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showDuplicateList, setShowDuplicateList] = useState(false);
 
   const [foodForm, setFoodForm] = useState<FoodFormData>({
     foodName: '',
@@ -321,6 +322,54 @@ const FoodTrackerApp = () => {
     }
   };
 
+  // Duplikasi makanan
+  const duplicateFood = (log: FoodLog) => {
+    setFoodForm({
+      foodName: log.food_name,
+      calories: String(log.calories || ''),
+      protein: String(log.protein || ''),
+      carbs: String(log.carbs || ''),
+      fat: String(log.fat || ''),
+      mealTime: log.meal_time,
+      fiber: String(log.fiber || ''),
+      sugar: String(log.sugar || ''),
+      sodium: String(log.sodium || ''),
+      salt: String(log.salt || ''),
+      omega_3: String(log.omega_3 || ''),
+      omega_6: String(log.omega_6 || ''),
+      vitamin_a: String(log.vitamin_a || ''),
+      vitamin_b1: String(log.vitamin_b1 || ''),
+      vitamin_b2: String(log.vitamin_b2 || ''),
+      vitamin_b3: String(log.vitamin_b3 || ''),
+      vitamin_b5: String(log.vitamin_b5 || ''),
+      vitamin_b6: String(log.vitamin_b6 || ''),
+      vitamin_b12: String(log.vitamin_b12 || ''),
+      folate: String(log.folate || ''),
+      biotin: String(log.biotin || ''),
+      choline: String(log.choline || ''),
+      vitamin_c: String(log.vitamin_c || ''),
+      vitamin_d: String(log.vitamin_d || ''),
+      vitamin_e: String(log.vitamin_e || ''),
+      vitamin_k: String(log.vitamin_k || ''),
+      calcium: String(log.calcium || ''),
+      phosphorus: String(log.phosphorus || ''),
+      magnesium: String(log.magnesium || ''),
+      iron: String(log.iron || ''),
+      iodine: String(log.iodine || ''),
+      zinc: String(log.zinc || ''),
+      selenium: String(log.selenium || ''),
+      manganese: String(log.manganese || ''),
+      fluoride: String(log.fluoride || ''),
+      chromium: String(log.chromium || ''),
+      potassium: String(log.potassium || ''),
+      chloride: String(log.chloride || ''),
+      copper: String(log.copper || ''),
+    });
+    setShowFoodForm(true);
+    setShowDuplicateList(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const deleteWaterLog = async (id: string) => {
     if (!confirm('Hapus data air ini?')) return;
     try {
@@ -399,19 +448,19 @@ const FoodTrackerApp = () => {
     
     return (
       <div className="mb-4">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-sm font-medium text-gray-700">{label}</span>
-          <span className={`text-sm font-semibold ${status.color}`}>
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-bold text-gray-800">{label}</span>
+          <span className={`text-sm font-bold ${status.color}`}>
             {current.toFixed(1)}/{target} {unit}
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3">
+        <div className="w-full bg-gray-300 rounded-full h-4 shadow-inner">
           <div
-            className={`h-3 rounded-full transition-all duration-500 ${getProgressColor(percentage)}`}
+            className={`h-4 rounded-full transition-all duration-500 shadow-md ${getProgressColor(percentage)}`}
             style={{ width: `${percentage}%` }}
           />
         </div>
-        <div className={`text-xs mt-1 ${status.color}`}>{status.message}</div>
+        <div className={`text-xs mt-1 font-semibold ${status.color}`}>{status.message}</div>
       </div>
     );
   };
@@ -578,19 +627,61 @@ const FoodTrackerApp = () => {
         {/* Food Page */}
         {currentPage === 'food' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
               <div>
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">Input Makanan</h2>
                 <p className="text-gray-600">Catat makananmu hari ini</p>
               </div>
-              <button
-                onClick={() => setShowFoodForm(!showFoodForm)}
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-green-500/50 transition-all flex items-center gap-2 font-semibold"
-              >
-                <Plus size={20} />
-                Tambah Makanan
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowDuplicateList(!showDuplicateList)}
+                  className="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2 font-semibold"
+                >
+                  <Copy size={20} />
+                  Duplikasi
+                </button>
+                <button
+                  onClick={() => { setShowFoodForm(!showFoodForm); setShowDuplicateList(false); }}
+                  className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-xl hover:shadow-lg hover:shadow-green-500/50 transition-all flex items-center gap-2 font-semibold"
+                >
+                  <Plus size={20} />
+                  Tambah Baru
+                </button>
+              </div>
             </div>
+
+            {showDuplicateList && (
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-300 rounded-2xl shadow-xl p-6 mb-6">
+                <h3 className="font-bold text-lg text-gray-900 mb-4">🔁 Pilih Makanan untuk Diduplikasi</h3>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {foodLogs.length === 0 ? (
+                    <p className="text-center py-8 text-gray-600 font-semibold">Belum ada riwayat makanan</p>
+                  ) : (
+                    foodLogs.map((log) => (
+                      <button
+                        key={log.id}
+                        onClick={() => duplicateFood(log)}
+                        className="w-full bg-white hover:bg-purple-50 border-2 border-purple-200 hover:border-purple-400 rounded-xl p-4 transition-all text-left"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xl">{getMealEmoji(log.meal_time)}</span>
+                            <div>
+                              <h4 className="font-bold text-gray-900">{log.food_name}</h4>
+                              <div className="flex gap-3 text-sm text-gray-700 font-medium">
+                                {log.calories && <span>🔥 {log.calories} kcal</span>}
+                                {log.protein && <span>🥩 {log.protein}g</span>}
+                              </div>
+                            </div>
+                          </div>
+                          <Copy className="text-purple-600" size={20} />
+                        </div>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
 
             {showFoodForm && (
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl shadow-xl p-6 mb-6">
@@ -610,14 +701,14 @@ const FoodTrackerApp = () => {
                   placeholder="Nama makanan"
                   value={foodForm.foodName}
                   onChange={(e) => setFoodForm({ ...foodForm, foodName: e.target.value })}
-                  className="w-full p-3 border-2 border-green-300 rounded-xl mb-3 bg-white text-gray-800 font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                  className="w-full p-3 border-2 border-green-300 rounded-xl mb-3 bg-white text-gray-900 font-bold placeholder-gray-500 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
                 />
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                  <input type="number" placeholder="Kalori (kcal)" value={foodForm.calories} onChange={(e) => setFoodForm({ ...foodForm, calories: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
-                  <input type="number" placeholder="Protein (g)" value={foodForm.protein} onChange={(e) => setFoodForm({ ...foodForm, protein: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
-                  <input type="number" placeholder="Karbo (g)" value={foodForm.carbs} onChange={(e) => setFoodForm({ ...foodForm, carbs: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
-                  <input type="number" placeholder="Lemak (g)" value={foodForm.fat} onChange={(e) => setFoodForm({ ...foodForm, fat: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-medium focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Kalori (kcal)" value={foodForm.calories} onChange={(e) => setFoodForm({ ...foodForm, calories: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-bold text-gray-900 placeholder-gray-500 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Protein (g)" value={foodForm.protein} onChange={(e) => setFoodForm({ ...foodForm, protein: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-bold text-gray-900 placeholder-gray-500 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Karbo (g)" value={foodForm.carbs} onChange={(e) => setFoodForm({ ...foodForm, carbs: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-bold text-gray-900 placeholder-gray-500 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
+                  <input type="number" placeholder="Lemak (g)" value={foodForm.fat} onChange={(e) => setFoodForm({ ...foodForm, fat: e.target.value })} className="p-3 border-2 border-green-300 rounded-xl font-bold text-gray-900 placeholder-gray-500 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" />
                 </div>
 
                 {detailedMode && (
@@ -726,46 +817,47 @@ const FoodTrackerApp = () => {
               <p className="text-gray-600">Jaga hidrasi tubuhmu setiap hari</p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl shadow-xl p-6 mb-6">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-300 rounded-2xl shadow-xl p-6 mb-6">
               <div className="mb-6">
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Progress Hari Ini</h3>
                 <ProgressBar label="Air Hari Ini" current={totals.water} target={DAILY_TARGETS.water} unit="ml" />
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-2 border-blue-200">
-                <p className="text-sm font-semibold text-gray-700 mb-3">Quick Add:</p>
+              <div className="bg-white rounded-xl p-5 border-2 border-blue-300 shadow-lg">
+                <p className="text-sm font-bold text-gray-800 mb-3">Quick Add:</p>
                 <div className="grid grid-cols-3 gap-3">
-                  <button onClick={() => addWaterLog(250)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
+                  <button onClick={() => addWaterLog(250)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold text-base">
                     250ml
                   </button>
-                  <button onClick={() => addWaterLog(500)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
+                  <button onClick={() => addWaterLog(500)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold text-base">
                     500ml
                   </button>
-                  <button onClick={() => addWaterLog(1000)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold">
+                  <button onClick={() => addWaterLog(1000)} className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all font-bold text-base">
                     1L
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border-2 border-blue-100">
-              <h3 className="text-lg font-bold mb-4 text-gray-800">Riwayat Minum Hari Ini</h3>
-              <div className="space-y-2 max-h-96 overflow-y-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-200">
+              <h3 className="text-xl font-bold mb-4 text-gray-800">Riwayat Minum Hari Ini</h3>
+              <div className="space-y-3 max-h-96 overflow-y-auto">
                 {waterLogs.length === 0 ? (
-                  <p className="text-center py-8 text-gray-500">Belum minum air hari ini</p>
+                  <p className="text-center py-8 text-gray-600 font-semibold">Belum minum air hari ini</p>
                 ) : (
                   waterLogs.map((log) => (
-                    <div key={log.id} className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-3 flex items-center justify-between hover:shadow-md transition-all border border-blue-200">
+                    <div key={log.id} className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl p-4 flex items-center justify-between hover:shadow-md transition-all border-2 border-blue-300">
                       <div className="flex items-center gap-3">
-                        <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-2 rounded-lg">
-                          <Droplet className="text-blue-600" size={20} />
+                        <div className="bg-gradient-to-br from-blue-200 to-cyan-200 p-3 rounded-xl border-2 border-blue-400">
+                          <Droplet className="text-blue-700" size={24} />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-800">{log.amount_ml}ml</div>
-                          <div className="text-xs text-gray-600 font-medium">{formatTime(log.created_at)}</div>
+                          <div className="font-bold text-gray-900 text-lg">{log.amount_ml}ml</div>
+                          <div className="text-sm text-gray-700 font-semibold">{formatTime(log.created_at)}</div>
                         </div>
                       </div>
-                      <button onClick={() => deleteWaterLog(log.id)} className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all">
-                        <Trash2 size={16} />
+                      <button onClick={() => deleteWaterLog(log.id)} className="text-red-600 hover:text-red-800 hover:bg-red-100 p-2 rounded-lg transition-all">
+                        <Trash2 size={18} />
                       </button>
                     </div>
                   ))
@@ -783,8 +875,8 @@ const FoodTrackerApp = () => {
               <p className="text-gray-600">Tracking vitamin dan mineral harianmu</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl shadow-xl p-6 mb-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">💊 Vitamin</h3>
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-300 rounded-2xl shadow-xl p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">💊 Vitamin</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Vitamin A" current={totals.vitamin_a} target={DAILY_TARGETS.vitamin_a} unit="mcg" />
                 <ProgressBar label="Vitamin B1 (Thiamin)" current={totals.vitamin_b1} target={DAILY_TARGETS.vitamin_b1} unit="mg" />
@@ -803,8 +895,8 @@ const FoodTrackerApp = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl shadow-xl p-6 mb-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">⚡ Mineral</h3>
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 rounded-2xl shadow-xl p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">⚡ Mineral</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Kalsium" current={totals.calcium} target={DAILY_TARGETS.calcium} unit="mg" />
                 <ProgressBar label="Fosfor" current={totals.phosphorus} target={DAILY_TARGETS.phosphorus} unit="mg" />
@@ -823,8 +915,8 @@ const FoodTrackerApp = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl shadow-xl p-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">🌿 Nutrisi Lainnya</h3>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl shadow-xl p-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">🌿 Nutrisi Lainnya</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProgressBar label="Serat" current={totals.fiber} target={DAILY_TARGETS.fiber} unit="g" />
                 <ProgressBar label="Gula" current={totals.sugar} target={DAILY_TARGETS.sugar} unit="g" />
